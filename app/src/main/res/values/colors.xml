@@ -7,6 +7,7 @@
     <color name="colorIce">#c7ecee</color>
     <color name="colorCrystal">#dff9fb</color>
     <color name="colorWhite">#FFFFFF</color>
-
+    <color name="blackTextColor">#000</color>
+    <color name="colorLoginPrimaryDark">#FDFFFF</color>
 </resources>
 

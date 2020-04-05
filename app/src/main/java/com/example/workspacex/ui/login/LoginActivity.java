@@ -14,6 +14,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.StrictMode;
 import android.text.Editable;
+import android.text.Layout;
 import android.text.TextWatcher;
 import android.view.KeyEvent;
 import android.view.View;
@@ -28,6 +29,8 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.workspacex.HomeActivity;
@@ -35,12 +38,17 @@ import com.example.workspacex.R;
 import com.example.workspacex.ui.login.LoginViewModel;
 import com.example.workspacex.ui.login.LoginViewModelFactory;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+import org.w3c.dom.Text;
+
 import java.io.BufferedInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.HashMap;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -50,80 +58,6 @@ public class LoginActivity extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        loginViewModel = ViewModelProviders.of(this, new LoginViewModelFactory())
-                .get(LoginViewModel.class);
-
-        final EditText usernameEditText = findViewById(R.id.username);
-        final EditText passwordEditText = findViewById(R.id.password);
-        final Button loginButton = findViewById(R.id.login);
-        final ProgressBar loadingProgressBar = findViewById(R.id.loading);
-
-        loginViewModel.getLoginFormState().observe(this, new Observer<LoginFormState>() {
-            @Override
-            public void onChanged(@Nullable LoginFormState loginFormState) {
-                if (loginFormState == null) {
-                    return;
-                }
-                loginButton.setEnabled(loginFormState.isDataValid());
-                if (loginFormState.getUsernameError() != null) {
-                    usernameEditText.setError(getString(loginFormState.getUsernameError()));
-                }
-                if (loginFormState.getPasswordError() != null) {
-                    passwordEditText.setError(getString(loginFormState.getPasswordError()));
-                }
-            }
-        });
-
-        loginViewModel.getLoginResult().observe(this, new Observer<LoginResult>() {
-            @Override
-            public void onChanged(@Nullable LoginResult loginResult) {
-                if (loginResult == null) {
-                    return;
-                }
-                loadingProgressBar.setVisibility(View.GONE);
-                if (loginResult.getError() != null) {
-                    showLoginFailed(loginResult.getError());
-                }
-                if (loginResult.getSuccess() != null) {
-                    updateUiWithUser(loginResult.getSuccess());
-                }
-                setResult(Activity.RESULT_OK);
-
-                //Complete and destroy login activity once successful
-                finish();
-            }
-        });
-
-        TextWatcher afterTextChangedListener = new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-                // ignore
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                // ignore
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-                loginViewModel.loginDataChanged(usernameEditText.getText().toString(),
-                        passwordEditText.getText().toString());
-            }
-        };
-        usernameEditText.addTextChangedListener(afterTextChangedListener);
-        passwordEditText.addTextChangedListener(afterTextChangedListener);
-        passwordEditText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-
-            @Override
-            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-                if (actionId == EditorInfo.IME_ACTION_DONE) {
-                    loginViewModel.login(usernameEditText.getText().toString(),
-                            passwordEditText.getText().toString());
-                }
-                return false;
-            }
-        });
     }
 
     private void updateUiWithUser(LoggedInUserView model) {
@@ -136,6 +70,61 @@ public class LoginActivity extends AppCompatActivity {
         Toast.makeText(getApplicationContext(), errorString, Toast.LENGTH_SHORT).show();
     }
 
+    public void handleSignUp (View view) {
+        EditText emailET = findViewById(R.id.editTextEmail);
+        String email = emailET.getText().toString();
+        EditText pwdET = findViewById(R.id.editTextPassword);
+        String pwd = pwdET.getText().toString();
+        EditText firstNameET = findViewById(R.id.editTextFirstName);
+        String firstName = firstNameET.getText().toString();
+        EditText lastNameET = findViewById(R.id.editTextLastName);
+        String lastName = lastNameET.getText().toString();
+        RequestQueue requestQueue;
+        requestQueue = Volley.newRequestQueue(getApplicationContext());
+        String url ="http://192.168.43.102:5000/customer/signup";
+        HashMap<String, String> params = new HashMap<String, String>();
+        params.put("email", email);
+        params.put("pwd", pwd);
+        params.put("fn", firstName);
+        params.put("ln", lastName);
+        JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.POST,
+                url, new JSONObject(params), new Response.Listener<JSONObject>()
+        {
+
+            @Override
+            public void onResponse(JSONObject response) {
+                System.out.println("Response is: " + response);
+            }
+
+        }, new Response.ErrorListener() {
+
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                error.printStackTrace();
+            }
+        })
+        {
+            @Override
+            public String getBodyContentType()
+            {
+                return "application/json";
+            }
+        };
+        requestQueue.add(jsonObjReq);
+    }
+
+    public  void switchToSignup (View view) {
+        View l = findViewById(R.id.login_layout);
+        l.setVisibility(View.GONE);
+        View reg = findViewById(R.id.register_layout);
+        reg.setVisibility(View.VISIBLE);    }
+
+    public void switchToLogin(View view) {
+        View l = findViewById(R.id.register_layout);
+        l.setVisibility(View.GONE);
+        View reg = findViewById(R.id.login_layout);
+        reg.setVisibility(View.VISIBLE);
+    }
     public void handleSignIn(View view) throws IOException {
         int SDK_INT = android.os.Build.VERSION.SDK_INT;
         if (SDK_INT > 8)
