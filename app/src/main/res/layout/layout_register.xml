@@ -39,14 +39,14 @@
             android:maxLines="1"
             android:hint="Last Name"/>
         <EditText
-            android:id="@+id/editTextEmail"
+            android:id="@+id/editTextEmail_r"
             style="@style/modifiedEditText"
             android:inputType="textEmailAddress"
             android:maxLines="1"
             android:hint="E-mail"/>
 
         <EditText
-            android:id="@+id/editTextPassword"
+            android:id="@+id/editTextPassword_r"
             style="@style/modifiedEditText"
             android:hint="password"
             android:maxLines="1"
