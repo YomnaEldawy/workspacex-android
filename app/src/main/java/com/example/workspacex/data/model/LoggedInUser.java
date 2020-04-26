@@ -5,19 +5,42 @@ package com.example.workspacex.data.model;
  */
 public class LoggedInUser {
 
-    private String userId;
-    private String displayName;
+    private static String userId;
 
-    public LoggedInUser(String userId, String displayName) {
-        this.userId = userId;
-        this.displayName = displayName;
-    }
-
-    public String getUserId() {
+    public static String getUserId() {
         return userId;
     }
 
-    public String getDisplayName() {
-        return displayName;
+    public static void setUserId(String userId) {
+        LoggedInUser.userId = userId;
     }
+
+    public static String getFirstName() {
+        return firstName;
+    }
+
+    public static void setFirstName(String firstName) {
+        LoggedInUser.firstName = firstName;
+    }
+
+    public static String getLastName() {
+        return lastName;
+    }
+
+    public static void setLastName(String lastName) {
+        LoggedInUser.lastName = lastName;
+    }
+
+    public static String getEmail() {
+        return email;
+    }
+
+    public static void setEmail(String email) {
+        LoggedInUser.email = email;
+    }
+
+    private static String firstName;
+    private static String lastName;
+    private static String email;
+
 }

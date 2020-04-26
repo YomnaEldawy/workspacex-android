@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.home.ConfirmScan">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/ws_name_tv"
+        android:text="Workspace Name"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="100dp"
+        android:textSize="40dp"
+        android:textColor="#000"
+        />
+    <Button
+        android:id="@+id/confirm_checkin_btn"
+        android:layout_marginTop="50dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/ws_name_tv"
+        android:layout_centerHorizontal="true"
+        android:text="Confirm check in"
+        android:background="#2ecc71"
+        android:padding="30dp"
+        android:onClick="confirmCheckIn"
+        />
+    <Button
+        android:id="@+id/cancel_scan_btn"
+        android:layout_marginTop="50dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/confirm_checkin_btn"
+        android:layout_centerHorizontal="true"
+        android:text="Cancel Scanning"
+        android:padding="30dp"
+        android:background="#c0392b"
+        android:onClick="cancelScanning"
+        />
+    <Button
+        android:id="@+id/rescan_btn"
+        android:layout_marginTop="50dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/cancel_scan_btn"
+        android:layout_centerHorizontal="true"
+        android:text="Retry scanning"
+        android:padding="30dp"
+        android:background="#2980b9"
+        android:onClick="retryScanning"
+        />
+</RelativeLayout>

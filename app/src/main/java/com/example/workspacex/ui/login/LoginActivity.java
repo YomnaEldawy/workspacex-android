@@ -19,6 +19,7 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.workspacex.HomeActivity;
 import com.example.workspacex.R;
+import com.example.workspacex.data.model.LoggedInUser;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -129,7 +130,17 @@ public class LoginActivity extends AppCompatActivity {
             public void onResponse(JSONObject response) {
                 try {
                     if ((boolean) response.get("success") == true) {
+                        System.out.println(response);
                         Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
+                        JSONObject userDetails = response.getJSONObject("userDetails");
+                        String firstName = userDetails.getString("firstName");
+                        String lastName = userDetails.getString("lastName");
+                        String email = userDetails.getString("email");
+                        String id = userDetails.getString("id");
+                        LoggedInUser.setEmail(email);
+                        LoggedInUser.setFirstName(firstName);
+                        LoggedInUser.setLastName(lastName);
+                        LoggedInUser.setUserId(id);
                         startActivity(intent);
                     } else {
                         Toast.makeText(getApplicationContext(), "Wrong email or password", Toast.LENGTH_LONG).show();
