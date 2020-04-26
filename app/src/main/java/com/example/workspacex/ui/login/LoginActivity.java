@@ -145,8 +145,6 @@ public class LoginActivity extends AppCompatActivity {
         JSONObject jsonBody = new JSONObject();
         jsonBody.put("email", email);
         jsonBody.put("password", pwd);
-        Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
-        startActivity(intent);
         JsonObjectRequest jsonObject = new JsonObjectRequest(Request.Method.POST, url, jsonBody, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {

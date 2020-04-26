@@ -50,5 +50,19 @@
             android:text="010010100"
             android:layout_below="@id/workspace_address"
             />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/workspace_latitude"
+            android:text="lng"
+            android:layout_below="@id/workspace_phone"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/workspace_longitude"
+            android:text="lat"
+            android:layout_below="@id/workspace_latitude"
+            />
     </RelativeLayout>
 </FrameLayout>

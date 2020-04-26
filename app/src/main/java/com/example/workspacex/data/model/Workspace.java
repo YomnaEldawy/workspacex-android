@@ -38,15 +38,17 @@ public class Workspace {
             @Override
             public void onSuccess(JSONArray response) {
 
-                    for (int i = 0; i < response.length(); i++) {
-                        try {
+                for (int i = 0; i < response.length(); i++) {
+                    try {
                         JSONObject cur = response.optJSONObject(i);
                         final Workspace w = new Workspace();
                         w.setName((String) (cur.get("name") + ""));
                         w.setStreetName((String) cur.get("streetName") + "");
                         w.setStreetNumber((String) cur.get("streetNumber") + "");
-                        w.setCity((String) cur.get("city") +"");
-                        w.setPhoneNumber((String) cur.get("phone")+"");
+                        w.setCity((String) cur.get("city") + "");
+                        w.setPhoneNumber((String) cur.get("phone") + "");
+                        w.setLatitude(Float.parseFloat(cur.get("latitude") + ""));
+                        w.setLongitude(Float.parseFloat(cur.get("longitude") + ""));
                         View wsView = com.example.workspacex.controllers.Workspace.getView(context, w);
                         wsView.setOnClickListener(new View.OnClickListener() {
                             @Override
@@ -55,23 +57,22 @@ public class Workspace {
                             }
                         });
                         l.addView(wsView);
-                        } catch (Exception e) {
-                            System.out.println(e);
-                        }
+                    } catch (Exception e) {
+                        System.out.println(e);
                     }
+                }
 
                 System.out.println(response);
             }
         }, context);
     }
 
-    private static void getFromDB (String id, final ServerCallback callback, Context context) throws JSONException {
+    private static void getFromDB(String id, final ServerCallback callback, Context context) throws JSONException {
         RequestQueue requestQueue;
         requestQueue = Volley.newRequestQueue(context);
-        String url ="http://192.168.1.108:5000/workspace/" + id;
+        String url = "http://192.168.1.108:5000/workspace/" + id;
         JsonArrayRequest jsonObjReq = new JsonArrayRequest(Request.Method.GET,
-                url, new JSONArray(), new Response.Listener<JSONArray>()
-        {
+                url, new JSONArray(), new Response.Listener<JSONArray>() {
 
             @Override
             public void onResponse(JSONArray response) {
@@ -85,11 +86,9 @@ public class Workspace {
             public void onErrorResponse(VolleyError error) {
                 error.printStackTrace();
             }
-        })
-        {
+        }) {
             @Override
-            public String getBodyContentType()
-            {
+            public String getBodyContentType() {
                 return "application/json";
             }
         };
@@ -147,6 +146,24 @@ public class Workspace {
     String id;
     private String name;
     private String city, district, streetName, streetNumber;
+
+    public float getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(float latitude) {
+        this.latitude = latitude;
+    }
+
+    public float getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(float longitude) {
+        this.longitude = longitude;
+    }
+
+    private float latitude, longitude;
 
     public String getPhoneNumber() {
         return phoneNumber;

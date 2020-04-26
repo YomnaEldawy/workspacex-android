@@ -15,9 +15,15 @@ public class Workspace {
         TextView workspaceName = v.findViewById(R.id.workspace_name);
         TextView workspaceAddress = v.findViewById(R.id.workspace_address);
         TextView workspacePhone = v.findViewById(R.id.workspace_phone);
+        TextView workspaceLatitude = v.findViewById(R.id.workspace_latitude);
+        TextView workspaceLongitude = v.findViewById(R.id.workspace_longitude);
+
         workspaceName.setText(workspace.getName());
         workspaceAddress.setText(workspace.getAddress());
         workspacePhone.setText(workspace.getPhoneNumber());
+        workspaceLatitude.setText(workspace.getLatitude() + "");
+        workspaceLongitude.setText(workspace.getLongitude() + "");
+
         return v;
     }
 }
