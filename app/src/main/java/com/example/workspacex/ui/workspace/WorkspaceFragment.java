@@ -32,9 +32,14 @@ public class WorkspaceFragment extends Fragment {
         TextView name = root.findViewById(R.id.workspace_name);
         TextView address = root.findViewById(R.id.workspace_address);
         TextView phone = root.findViewById(R.id.workspace_phone);
+        TextView workspaceLatitude = root.findViewById(R.id.workspace_latitude);
+        TextView workspaceLongitude = root.findViewById(R.id.workspace_longitude);
+
         name.setText(workspace.getName());
         address.setText(workspace.getAddress());
         phone.setText(workspace.getPhoneNumber());
+        workspaceLatitude.setText(workspace.getLatitude() + "");
+        workspaceLongitude.setText(workspace.getLongitude() + "");
         return root;
     }
 
