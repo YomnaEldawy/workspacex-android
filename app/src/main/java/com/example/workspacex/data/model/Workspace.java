@@ -33,20 +33,20 @@ public class Workspace {
 
     }
 
-    Semaphore sem;
     public static void displayWorkspaces(String id, final Context context, final LinearLayout l) throws JSONException, InterruptedException {
         getFromDB(id, new ServerCallback() {
             @Override
             public void onSuccess(JSONArray response) {
-                try {
+
                     for (int i = 0; i < response.length(); i++) {
+                        try {
                         JSONObject cur = response.optJSONObject(i);
                         final Workspace w = new Workspace();
-                        w.setName((String) cur.get("name"));
-                        w.setStreetName((String) cur.get("streetName"));
-                        w.setStreetNumber((String) cur.get("streetNumber"));
-                        w.setCity((String) cur.get("city"));
-                        w.setPhoneNumber((String) cur.get("phone"));
+                        w.setName((String) (cur.get("name") + ""));
+                        w.setStreetName((String) cur.get("streetName") + "");
+                        w.setStreetNumber((String) cur.get("streetNumber") + "");
+                        w.setCity((String) cur.get("city") +"");
+                        w.setPhoneNumber((String) cur.get("phone")+"");
                         View wsView = com.example.workspacex.controllers.Workspace.getView(context, w);
                         wsView.setOnClickListener(new View.OnClickListener() {
                             @Override
@@ -55,10 +55,11 @@ public class Workspace {
                             }
                         });
                         l.addView(wsView);
+                        } catch (Exception e) {
+                            System.out.println(e);
+                        }
                     }
-                } catch (Exception e) {
 
-                }
                 System.out.println(response);
             }
         }, context);
@@ -67,7 +68,7 @@ public class Workspace {
     private static void getFromDB (String id, final ServerCallback callback, Context context) throws JSONException {
         RequestQueue requestQueue;
         requestQueue = Volley.newRequestQueue(context);
-        String url ="http://192.168.43.102:5000/workspace/" + id;
+        String url ="http://192.168.1.108:5000/workspace/" + id;
         JsonArrayRequest jsonObjReq = new JsonArrayRequest(Request.Method.GET,
                 url, new JSONArray(), new Response.Listener<JSONArray>()
         {

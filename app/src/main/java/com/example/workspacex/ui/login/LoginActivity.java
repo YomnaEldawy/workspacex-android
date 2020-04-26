@@ -83,7 +83,7 @@ public class LoginActivity extends AppCompatActivity {
         EditText lastNameET = findViewById(R.id.editTextLastName);
         final String lastName = lastNameET.getText().toString();
         RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
-        String url ="http://192.168.43.102:5000/customer/signup";
+        String url ="http://192.168.1.108:5000/customer/signup";
         JSONObject jsonBody = new JSONObject();
         jsonBody.put("email", email);
         jsonBody.put("password", pwd);
@@ -141,38 +141,39 @@ public class LoginActivity extends AppCompatActivity {
         EditText pwdET = findViewById(R.id.editTextPassword);
         final String pwd = pwdET.getText().toString();
         RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
-        String url ="http://192.168.43.102:5000/customer/login";
+        String url ="http://192.168.1.108:5000/customer/login";
         JSONObject jsonBody = new JSONObject();
         jsonBody.put("email", email);
         jsonBody.put("password", pwd);
-
-        JsonObjectRequest jsonOblect = new JsonObjectRequest(Request.Method.POST, url, jsonBody, new Response.Listener<JSONObject>() {
-            @Override
-            public void onResponse(JSONObject response) {
-                try {
-                    if ((boolean) response.get("success") == true) {
-                        Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
-                        startActivity(intent);
-                    } else {
-                        Toast.makeText(getApplicationContext(), "Wrong email or password", Toast.LENGTH_LONG).show();
-                    }
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                System.out.println(error);
-            }
-        }) {
-            @Override
-            public Map<String, String> getHeaders() throws AuthFailureError {
-                final Map<String, String> headers = new HashMap<>();
-                return headers;
-            }
-        };
-        Volley.newRequestQueue(this).add(jsonOblect);
+        Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
+        startActivity(intent);
+//        JsonObjectRequest jsonOblect = new JsonObjectRequest(Request.Method.POST, url, jsonBody, new Response.Listener<JSONObject>() {
+//            @Override
+//            public void onResponse(JSONObject response) {
+//                try {
+//                    if ((boolean) response.get("success") == true) {
+//                        Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
+//                        startActivity(intent);
+//                    } else {
+//                        Toast.makeText(getApplicationContext(), "Wrong email or password", Toast.LENGTH_LONG).show();
+//                    }
+//                } catch (JSONException e) {
+//                    e.printStackTrace();
+//                }
+//            }
+//        }, new Response.ErrorListener() {
+//            @Override
+//            public void onErrorResponse(VolleyError error) {
+//                System.out.println(error);
+//            }
+//        }) {
+//            @Override
+//            public Map<String, String> getHeaders() throws AuthFailureError {
+//                final Map<String, String> headers = new HashMap<>();
+//                return headers;
+//            }
+//        };
+//        Volley.newRequestQueue(this).add(jsonOblect);
 
 
         // Instantiate the RequestQueue
