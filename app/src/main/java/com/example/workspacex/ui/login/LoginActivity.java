@@ -1,28 +1,13 @@
 package com.example.workspacex.ui.login;
 
-import android.app.Activity;
-
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProviders;
-
 import android.content.Intent;
 import android.os.Bundle;
 
-import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.os.StrictMode;
-import android.text.Editable;
-import android.text.Layout;
-import android.text.TextWatcher;
-import android.view.KeyEvent;
 import android.view.View;
-import android.view.inputmethod.EditorInfo;
-import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ProgressBar;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -30,26 +15,15 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.workspacex.HomeActivity;
 import com.example.workspacex.R;
-import com.example.workspacex.ui.login.LoginViewModel;
-import com.example.workspacex.ui.login.LoginViewModelFactory;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.w3c.dom.Text;
 
-import java.io.BufferedInputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -73,7 +47,7 @@ public class LoginActivity extends AppCompatActivity {
         Toast.makeText(getApplicationContext(), errorString, Toast.LENGTH_SHORT).show();
     }
 
-    public void handleSignUp (View view) throws JSONException {
+    public void handleSignUp(View view) throws JSONException {
         EditText emailET = findViewById(R.id.editTextEmail_r);
         final String email = emailET.getText().toString();
         EditText pwdET = findViewById(R.id.editTextPassword_r);
@@ -83,7 +57,7 @@ public class LoginActivity extends AppCompatActivity {
         EditText lastNameET = findViewById(R.id.editTextLastName);
         final String lastName = lastNameET.getText().toString();
         RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
-        String url ="http://192.168.1.108:5000/customer/signup";
+        String url = "http://192.168.1.108:5000/customer/signup";
         JSONObject jsonBody = new JSONObject();
         jsonBody.put("email", email);
         jsonBody.put("password", pwd);
@@ -125,11 +99,12 @@ public class LoginActivity extends AppCompatActivity {
     }
 
 
-    public void switchToSignup (View view) {
+    public void switchToSignup(View view) {
         View l = findViewById(R.id.login_layout);
         l.setVisibility(View.GONE);
         View reg = findViewById(R.id.register_layout);
-        reg.setVisibility(View.VISIBLE);    }
+        reg.setVisibility(View.VISIBLE);
+    }
 
     public void switchToLogin(View view) {
         View l = findViewById(R.id.register_layout);
@@ -137,13 +112,15 @@ public class LoginActivity extends AppCompatActivity {
         View reg = findViewById(R.id.login_layout);
         reg.setVisibility(View.VISIBLE);
     }
+
+
     public void handleSignIn(View view) throws IOException, JSONException {
         EditText emailET = findViewById(R.id.editTextEmail);
         final String email = emailET.getText().toString();
         EditText pwdET = findViewById(R.id.editTextPassword);
         final String pwd = pwdET.getText().toString();
         RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
-        String url ="http://192.168.1.108:5000/customer/login";
+        String url = "http://192.168.1.108:5000/customer/login";
         JSONObject jsonBody = new JSONObject();
         jsonBody.put("email", email);
         jsonBody.put("password", pwd);
@@ -180,8 +157,6 @@ public class LoginActivity extends AppCompatActivity {
 
 
         // Instantiate the RequestQueue
-
-
 
 
     }

@@ -67,7 +67,7 @@ public class Workspace {
         }, context);
     }
 
-    private static void getFromDB(String id, final ServerCallback callback, Context context) throws JSONException {
+    public static void getFromDB(String id, final ServerCallback callback, Context context) throws JSONException {
         RequestQueue requestQueue;
         requestQueue = Volley.newRequestQueue(context);
         String url = "http://192.168.1.108:5000/workspace/" + id;

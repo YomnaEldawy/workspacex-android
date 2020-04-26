@@ -64,5 +64,10 @@
             android:text="lat"
             android:layout_below="@id/workspace_latitude"
             />
+        <com.google.android.gms.maps.MapView
+            android:id="@+id/ws_map"
+            android:layout_below="@id/workspace_longitude"
+            android:layout_width="match_parent"
+            android:layout_height="400dp" />
     </RelativeLayout>
 </FrameLayout>
