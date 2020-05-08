@@ -19,6 +19,7 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.workspacex.HomeActivity;
 import com.example.workspacex.R;
+import com.example.workspacex.config.ServerIP;
 import com.example.workspacex.data.model.LoggedInUser;
 
 import org.json.JSONException;
@@ -47,7 +48,7 @@ public class LoginActivity extends AppCompatActivity {
         EditText lastNameET = findViewById(R.id.editTextLastName);
         final String lastName = lastNameET.getText().toString();
         RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
-        String url = "http://192.168.1.104:5000/customer/signup";
+        String url = ServerIP.getIP() + "/customer/signup";
         JSONObject jsonBody = new JSONObject();
         jsonBody.put("email", email);
         jsonBody.put("password", pwd);
@@ -109,7 +110,7 @@ public class LoginActivity extends AppCompatActivity {
         EditText pwdET = findViewById(R.id.editTextPassword);
         final String pwd = pwdET.getText().toString();
         RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
-        String url = "http://192.168.1.104:5000/customer/login";
+        String url = ServerIP.getIP() +"/customer/login";
         JSONObject jsonBody = new JSONObject();
         jsonBody.put("email", email);
         jsonBody.put("password", pwd);

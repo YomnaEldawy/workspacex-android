@@ -18,6 +18,7 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.workspacex.HomeActivity;
 import com.example.workspacex.R;
+import com.example.workspacex.config.ServerIP;
 import com.example.workspacex.data.model.LoggedInUser;
 import com.example.workspacex.ui.login.LoginActivity;
 
@@ -57,7 +58,7 @@ public class ConfirmScan extends AppCompatActivity {
         try {
             String userId = LoggedInUser.getUserId();
 
-            String url = "http://192.168.1.104:5000/checkin/" + id;
+            String url = ServerIP.getIP() +"/checkin/" + id;
             JSONObject jsonBody = new JSONObject();
             jsonBody.put("customerId", userId);
             System.out.println("workspace id: " + id);

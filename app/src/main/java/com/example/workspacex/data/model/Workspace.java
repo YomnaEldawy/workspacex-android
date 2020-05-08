@@ -3,29 +3,21 @@ package com.example.workspacex.data.model;
 import android.content.Context;
 import android.view.View;
 import android.widget.LinearLayout;
-
-import com.android.volley.Cache;
-import com.android.volley.Network;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.BasicNetwork;
-import com.android.volley.toolbox.DiskBasedCache;
-import com.android.volley.toolbox.HurlStack;
 import com.android.volley.toolbox.JsonArrayRequest;
-import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.workspacex.HomeActivity;
 import com.example.workspacex.callbacks.ServerCallback;
+import com.example.workspacex.config.ServerIP;
 import com.example.workspacex.ui.workspace.WorkspaceFragment;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.HashMap;
-import java.util.concurrent.Semaphore;
 
 public class Workspace {
 
@@ -70,7 +62,7 @@ public class Workspace {
     public static void getFromDB(String id, final ServerCallback callback, Context context) throws JSONException {
         RequestQueue requestQueue;
         requestQueue = Volley.newRequestQueue(context);
-        String url = "http://192.168.1.104:5000/workspace/" + id;
+        String url = ServerIP.getIP() + "/workspace/" + id;
         JsonArrayRequest jsonObjReq = new JsonArrayRequest(Request.Method.GET,
                 url, new JSONArray(), new Response.Listener<JSONArray>() {
 

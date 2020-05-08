@@ -27,8 +27,6 @@ import com.google.android.gms.maps.model.MarkerOptions;
 
 public class WorkspaceFragment extends Fragment{
     private MapView mMap;
-    private  GoogleMap googleMap;
-    private WorkspaceViewModel mViewModel;
     static Workspace workspace;
 
     public WorkspaceFragment (Workspace ws) {
@@ -62,13 +60,6 @@ public class WorkspaceFragment extends Fragment{
         workspaceLatitude.setText(workspace.getLatitude() + "");
         workspaceLongitude.setText(workspace.getLongitude() + "");
         return root;
-    }
-
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        mViewModel = ViewModelProviders.of(this).get(WorkspaceViewModel.class);
-        // TODO: Use the ViewModel
     }
 
 }
