@@ -40,9 +40,10 @@ public class ConfirmScan extends AppCompatActivity {
         try {
             JSONObject jsonObject = new JSONObject(getIntent().getStringExtra("QR_RESULT"));
             TextView wsNameTV = findViewById(R.id.ws_name_tv);
-            wsNameTV.setText(jsonObject.get("name") + "");
+            wsNameTV.setText(jsonObject.getString("name") + "");
             id = jsonObject.getString("id");
         } catch (Exception e) {
+            System.out.println(e);
             TextView wsNameTV = findViewById(R.id.ws_name_tv);
             confirmButton.setVisibility(View.GONE);
             wsNameTV.setText("Failed to recognize :(");
@@ -56,7 +57,7 @@ public class ConfirmScan extends AppCompatActivity {
         try {
             String userId = LoggedInUser.getUserId();
 
-            String url = "http://192.168.1.108:5000/checkin/" + id;
+            String url = "http://192.168.1.104:5000/checkin/" + id;
             JSONObject jsonBody = new JSONObject();
             jsonBody.put("customerId", userId);
             System.out.println("workspace id: " + id);

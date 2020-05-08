@@ -30,22 +30,11 @@ import java.util.Map;
 
 public class LoginActivity extends AppCompatActivity {
 
-    private LoginViewModel loginViewModel;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-    }
-
-    private void updateUiWithUser(LoggedInUserView model) {
-        String welcome = getString(R.string.welcome) + model.getDisplayName();
-        // TODO : initiate successful logged in experience
-        Toast.makeText(getApplicationContext(), welcome, Toast.LENGTH_LONG).show();
-    }
-
-    private void showLoginFailed(@StringRes Integer errorString) {
-        Toast.makeText(getApplicationContext(), errorString, Toast.LENGTH_SHORT).show();
     }
 
     public void handleSignUp(View view) throws JSONException {
@@ -58,7 +47,7 @@ public class LoginActivity extends AppCompatActivity {
         EditText lastNameET = findViewById(R.id.editTextLastName);
         final String lastName = lastNameET.getText().toString();
         RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
-        String url = "http://192.168.1.108:5000/customer/signup";
+        String url = "http://192.168.1.104:5000/customer/signup";
         JSONObject jsonBody = new JSONObject();
         jsonBody.put("email", email);
         jsonBody.put("password", pwd);
@@ -114,14 +103,13 @@ public class LoginActivity extends AppCompatActivity {
         reg.setVisibility(View.VISIBLE);
     }
 
-
     public void handleSignIn(View view) throws IOException, JSONException {
         EditText emailET = findViewById(R.id.editTextEmail);
         final String email = emailET.getText().toString();
         EditText pwdET = findViewById(R.id.editTextPassword);
         final String pwd = pwdET.getText().toString();
         RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
-        String url = "http://192.168.1.108:5000/customer/login";
+        String url = "http://192.168.1.104:5000/customer/login";
         JSONObject jsonBody = new JSONObject();
         jsonBody.put("email", email);
         jsonBody.put("password", pwd);

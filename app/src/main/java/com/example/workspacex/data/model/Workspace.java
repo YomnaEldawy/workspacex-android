@@ -70,7 +70,7 @@ public class Workspace {
     public static void getFromDB(String id, final ServerCallback callback, Context context) throws JSONException {
         RequestQueue requestQueue;
         requestQueue = Volley.newRequestQueue(context);
-        String url = "http://192.168.1.108:5000/workspace/" + id;
+        String url = "http://192.168.1.104:5000/workspace/" + id;
         JsonArrayRequest jsonObjReq = new JsonArrayRequest(Request.Method.GET,
                 url, new JSONArray(), new Response.Listener<JSONArray>() {
 
