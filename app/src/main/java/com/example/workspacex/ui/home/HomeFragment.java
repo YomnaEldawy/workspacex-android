@@ -70,8 +70,8 @@ public class HomeFragment extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        homeViewModel =
-                ViewModelProviders.of(this).get(HomeViewModel.class);
+//        homeViewModel =
+//                ViewModelProviders.of(this).get(HomeViewModel.class);
         HomeActivity.getInstance().clear();
         View root = inflater.inflate(R.layout.fragment_home, container, false);
         mMap = root.findViewById(R.id.all_ws_map);

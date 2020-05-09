@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.workspace.contents.BasicInfoFragment">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorWhite"
+        android:padding="20dp">
+
+        <TextView
+            android:id="@+id/workspace_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:text="Phi"
+            android:textColor="#000"
+            android:textSize="20dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/workspace_opens_at"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/workspace_name"
+            android:text="10:00AM"
+            android:textColor="#000" />
+
+        <TextView
+            android:id="@+id/workspace_closes_at"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/workspace_opens_at"
+            android:text="11:00PM"
+            android:textColor="#000" />
+
+        <TextView
+            android:id="@+id/workspace_address"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/workspace_closes_at"
+            android:text="5 AbdelSalam Aref st, Alexandria" />
+
+        <TextView
+            android:id="@+id/workspace_phone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/workspace_address"
+            android:text="010010100" />
+
+        <com.google.android.gms.maps.MapView
+            android:id="@+id/ws_map"
+            android:layout_width="match_parent"
+            android:layout_height="400dp"
+            android:layout_below="@id/workspace_phone" />
+    </RelativeLayout>
+</FrameLayout>
