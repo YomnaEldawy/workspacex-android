@@ -14,10 +14,10 @@ import com.example.workspacex.data.model.Workspace;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class ReviewsFragment extends Fragment {
-    static Workspace workspace;
+public class PhotosFragment extends Fragment {
+    Workspace workspace;
 
-    public ReviewsFragment(Workspace ws) {
+    public PhotosFragment(Workspace ws) {
         workspace = ws;
     }
 
@@ -26,6 +26,6 @@ public class ReviewsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_reviews, container, false);
+        return inflater.inflate(R.layout.fragment_photos, container, false);
     }
 }
