@@ -13,6 +13,44 @@
             android:orientation="vertical"
             android:id="@+id/reviews_content_ll"
             >
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:id="@+id/review_input_rl"
+                android:visibility="gone"
+                >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Write/Edit your review"
+                    android:id="@+id/write_review_title"
+                    android:textSize="17dp"
+                    android:textColor="#000"
+                    android:textStyle="bold"
+                    ></TextView>
+                <RatingBar
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:id="@+id/workspace_input_rating"
+                    android:layout_below="@id/write_review_title"
+                    >
+                </RatingBar>
+                <EditText
+                    android:id="@+id/review_text_et"
+                    android:layout_below="@+id/workspace_input_rating"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Lorem ipsum Dolor sit amet"
+                    ></EditText>
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Submit"
+                    android:layout_below="@id/review_text_et"
+                    ></Button>
+            </RelativeLayout>
         </LinearLayout>
     </ScrollView>
 </FrameLayout>

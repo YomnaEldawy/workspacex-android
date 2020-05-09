@@ -8,15 +8,17 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="wrap_content"
         android:background="@drawable/round_rectangle_small"
         android:backgroundTint="@color/colorWhite"
+        android:padding="5dp"
         >
         <ImageView
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:src="@drawable/logo"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:src="@drawable/event"
             android:id="@+id/event_img"
+            android:layout_marginHorizontal="5dp"
             ></ImageView>
         <TextView
             android:id="@+id/event_name"
@@ -24,7 +26,7 @@
             android:layout_height="wrap_content"
             android:text="Live in the Plaza"
             android:textColor="#000"
-            android:textSize="20dp"
+            android:textSize="17dp"
             android:textStyle="bold"
             android:layout_toRightOf="@id/event_img"
             >
@@ -60,7 +62,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/price_label"
                 android:layout_centerHorizontal="true"
-                android:textSize="30dp"
+                android:textSize="25dp"
                 android:textColor="#000"
                 android:textStyle="bold"
                 android:text="78$"
@@ -74,15 +76,15 @@
             android:id="@+id/start_date_tv"
             android:layout_toRightOf="@id/price_container_rl"
             android:layout_marginLeft="10dp"
-            android:layout_above="@id/end_date_tv"
             android:text="July 18th, 2019"
+            android:layout_alignBaseline="@+id/price_container_rl"
             ></TextView>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/end_date_tv"
             android:layout_toRightOf="@id/price_container_rl"
-            android:layout_alignBottom="@id/price_container_rl"
+            android:layout_below="@id/start_date_tv"
             android:layout_marginLeft="10dp"
             android:text="July 20th, 2019"
             ></TextView>
