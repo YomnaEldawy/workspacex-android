@@ -41,6 +41,7 @@ public class Workspace {
                         w.setPhoneNumber((String) cur.get("phone") + "");
                         w.setLatitude(Float.parseFloat(cur.get("latitude") + ""));
                         w.setLongitude(Float.parseFloat(cur.get("longitude") + ""));
+                        w.setId((String) (cur.getString("id")));
                         View wsView = com.example.workspacex.controllers.Workspace.getView(context, w);
                         wsView.setOnClickListener(new View.OnClickListener() {
                             @Override
@@ -133,6 +134,14 @@ public class Workspace {
 
     public String getAddress() {
         return streetNumber + " " + streetName + ", " + city;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     String id;

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="10dp"
+    >
+    <TextView
+        android:id="@+id/report_description_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="No internet connection"
+        android:textStyle="bold"
+        android:textSize="18dp"
+        android:paddingHorizontal="20dp"
+        android:gravity="center_vertical"
+        >
+    </TextView>
+    <TextView
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:id="@+id/reports_num"
+        android:layout_toRightOf="@id/report_description_tv"
+        android:background="@drawable/circle"
+        android:text="20"
+        android:backgroundTint="#c0392b"
+        android:textColor="@color/colorWhite"
+        android:gravity="center"
+        ></TextView>
+</RelativeLayout>

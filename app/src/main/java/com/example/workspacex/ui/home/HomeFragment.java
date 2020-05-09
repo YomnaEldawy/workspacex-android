@@ -60,7 +60,7 @@ public class HomeFragment extends Fragment {
                         }
                         totalLat /= response.length();
                         totalLng /= response.length();
-                        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(totalLat, totalLng), 5f));
+                        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(totalLat, totalLng), 15f));
                     }
                 });
 
