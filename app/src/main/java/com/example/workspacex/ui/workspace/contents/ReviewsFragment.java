@@ -8,11 +8,20 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.RatingBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
 import com.example.workspacex.R;
 import com.example.workspacex.callbacks.ReviewCallback;
 import com.example.workspacex.callbacks.ServerCallback;
@@ -31,6 +40,9 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -57,7 +69,6 @@ public class ReviewsFragment extends Fragment {
                         View v = ReviewItem.getReviewItem(context, r);
                         System.out.println(v);
                         linearLayout.addView(v);
-
                     }catch (Exception e) {
                         e.printStackTrace();
                     }
@@ -68,7 +79,7 @@ public class ReviewsFragment extends Fragment {
         }, context);
     }
 
-    private void handleReviewSection(final RelativeLayout relativeLayout, final EditText editText, final Context context) throws JSONException {
+    private void handleReviewSection(final RatingBar ratingBar, final RelativeLayout relativeLayout, final EditText editText, final Context context) throws JSONException {
         Reviews.getUserStatus(workspace.getId(), LoggedInUser.getUserId(), new ReviewCallback() {
             @Override
             public void onSuccess(JSONObject response) {
@@ -78,9 +89,12 @@ public class ReviewsFragment extends Fragment {
                         relativeLayout.setVisibility(View.VISIBLE);
                         if (response.getInt("count") > 0) {
                             editText.setText(response.getString("comment"));
+                            ratingBar.setRating((float)response.getDouble("starRating"));
+                            handleSubmit(context, false);
                         } else {
                             editText.setText("");
                             editText.setHint("Write your review");
+                            handleSubmit(context, true);
                         }
                     } else {
                         relativeLayout.setVisibility(View.GONE);
@@ -93,17 +107,49 @@ public class ReviewsFragment extends Fragment {
         }, context);
     }
 
+    void handleSubmit(final Context context, final boolean newReview) {
+        Button button = root.findViewById(R.id.submit_review);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try {
+                    final EditText editText = root.findViewById(R.id.review_text_et);
+                    final String comment = editText.getText().toString();
+                    final RatingBar ratingBar = root.findViewById(R.id.workspace_input_rating);
+                    Reviews.postReview(newReview, workspace.getId(), LoggedInUser.getUserId(), comment, (double) ratingBar.getRating(), new ReviewCallback() {
+                        @Override
+                        public void onSuccess(JSONObject response) {
+                            System.out.print("[Submit review]: ");
+                            try {
+                                if (response.getBoolean("success")) {
+                                    Toast.makeText(context, "Review submitted successfully", Toast.LENGTH_SHORT).show();
+                                } else {
+                                    Toast.makeText(context, "There was an error", Toast.LENGTH_SHORT).show();
+                                }
+                            }catch (Exception e) {
+                                Toast.makeText(context, "There was an error", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    }, context);
+
+                }catch (Exception e) {
+
+                }
+            }
+        });
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         root = inflater.inflate(R.layout.fragment_reviews, container, false);
         LinearLayout linearLayout = root.findViewById(R.id.reviews_content_ll);
         RelativeLayout relativeLayout = root.findViewById(R.id.review_input_rl);
         EditText editText = root.findViewById(R.id.review_text_et);
+        RatingBar ratingBar = root.findViewById(R.id.workspace_input_rating);
         try {
             displayReviews(linearLayout, getContext());
-            handleReviewSection(relativeLayout, editText, getContext());
+            handleReviewSection(ratingBar, relativeLayout, editText, getContext());
         } catch (JSONException e) {
             e.printStackTrace();
         }

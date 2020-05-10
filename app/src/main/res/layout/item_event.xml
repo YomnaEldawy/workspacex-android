@@ -10,7 +10,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/round_rectangle_small"
-        android:backgroundTint="@color/colorWhite"
         android:padding="5dp"
         >
         <ImageView
@@ -50,6 +49,7 @@
             android:id="@+id/price_container_rl"
             >
             <TextView
+                android:layout_marginTop="5dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Price"

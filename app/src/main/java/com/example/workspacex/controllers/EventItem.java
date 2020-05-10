@@ -7,13 +7,12 @@ import android.widget.TextView;
 
 import com.example.workspacex.R;
 import com.example.workspacex.data.model.Event;
-import com.example.workspacex.data.model.Report;
 
 public class EventItem {
 
     public static View getEventItem(Context context, Event event) {
         LayoutInflater vi = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View v = vi.inflate(R.layout.event_item, null);
+        View v = vi.inflate(R.layout.item_event, null);
         TextView name = v.findViewById(R.id.event_name);
         TextView description = v.findViewById(R.id.event_description);
         TextView start = v.findViewById(R.id.start_date_tv);

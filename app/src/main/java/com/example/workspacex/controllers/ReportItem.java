@@ -11,7 +11,7 @@ import com.example.workspacex.data.model.Report;
 public class ReportItem {
     public static View getReportItem(Context context, Report report) {
         LayoutInflater vi = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View v = vi.inflate(R.layout.report_item, null);
+        View v = vi.inflate(R.layout.item_report, null);
         TextView problem = v.findViewById(R.id.report_description_tv);
         TextView count = v.findViewById(R.id.reports_num);
         problem.setText(report.getReportDescription());

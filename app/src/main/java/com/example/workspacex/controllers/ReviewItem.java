@@ -14,7 +14,7 @@ public class ReviewItem {
 
     public static View getReviewItem(Context context, Review review) {
         LayoutInflater vi = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View v = vi.inflate(R.layout.review_item, null);
+        View v = vi.inflate(R.layout.item_review, null);
         TextView customerName = v.findViewById(R.id.customer_name);
         TextView comment = v.findViewById(R.id.comment_tv);
         TextView customerThumbnail = v.findViewById(R.id.customer_thumbnail);
