@@ -5,10 +5,15 @@
     android:layout_height="match_parent"
     tools:context=".ui.workspace.contents.PhotosFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Photos Fragment" />
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:id="@+id/photos_content_ll"
+            />
+    </ScrollView>
 
 </FrameLayout>
