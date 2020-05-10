@@ -16,6 +16,7 @@ import com.example.workspacex.controllers.EventItem;
 import com.example.workspacex.controllers.ReviewItem;
 import com.example.workspacex.data.model.Event;
 import com.example.workspacex.data.model.Review;
+import com.example.workspacex.data.model.Room;
 import com.example.workspacex.data.model.Workspace;
 import com.example.workspacex.endpoints.Events;
 import com.example.workspacex.endpoints.Reviews;
@@ -64,8 +65,8 @@ public class EventsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-       root = inflater.inflate(R.layout.fragment_events, container, false);
-       LinearLayout linearLayout = root.findViewById(R.id.events_content_ll);
+        root = inflater.inflate(R.layout.fragment_events, container, false);
+        LinearLayout linearLayout = root.findViewById(R.id.events_content_ll);
         try {
             displayReviews(linearLayout, getContext());
         } catch (JSONException e) {
@@ -74,3 +75,4 @@ public class EventsFragment extends Fragment {
         return root;
     }
 }
+

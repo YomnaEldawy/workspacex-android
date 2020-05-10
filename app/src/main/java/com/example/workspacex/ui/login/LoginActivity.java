@@ -58,6 +58,7 @@ public class LoginActivity extends AppCompatActivity {
         JsonObjectRequest jsonOblect = new JsonObjectRequest(Request.Method.POST, url, jsonBody, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
+                System.out.println(response);
                 try {
                     if ((boolean) response.get("success") == true) {
                         Toast.makeText(getApplicationContext(), "Successfully registered. please sign in", Toast.LENGTH_LONG).show();

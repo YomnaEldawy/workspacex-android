@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingHorizontal="10dp"
+    android:paddingTop="10dp"
+    >
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/round_rectangle_small"
+        android:backgroundTint="@color/colorWhite"
+        android:padding="5dp"
+        >
+        <ImageView
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:src="@drawable/amenity"
+            android:id="@+id/amenity_img"
+            android:layout_marginHorizontal="5dp"
+            ></ImageView>
+        <TextView
+            android:id="@+id/room_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Demo Room"
+            android:textColor="#000"
+            android:textSize="17dp"
+            android:textStyle="bold"
+            android:layout_toRightOf="@id/amenity_img"
+            >
+        </TextView>
+            <TextView
+                android:padding="20dp"
+                android:id="@+id/room_amenity_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="internet connection(2) \nair conditioning(4)"
+                android:textStyle="bold"
+                android:textSize="18dp"
+                android:layout_toRightOf="@id/amenity_img"
+                >
+            </TextView>
+    </RelativeLayout>
+</RelativeLayout>

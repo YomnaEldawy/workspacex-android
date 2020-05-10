@@ -15,6 +15,7 @@ import android.widget.TextView;
 
 import com.example.workspacex.R;
 import com.example.workspacex.data.model.Workspace;
+import com.example.workspacex.ui.workspace.contents.AmenitiesFragment;
 import com.example.workspacex.ui.workspace.contents.BasicInfoFragment;
 import com.example.workspacex.ui.workspace.contents.EventsFragment;
 import com.example.workspacex.ui.workspace.contents.PhotosFragment;
@@ -51,6 +52,7 @@ public class WorkspaceFragment extends Fragment {
         TextView photos = root.findViewById(R.id.photos_tab);
         TextView events = root.findViewById(R.id.events_tab);
         TextView rooms = root.findViewById(R.id.rooms_tab);
+        TextView amenities = root.findViewById(R.id.amenities_tab);
 
         connectTabToFragment(basicInfo, new BasicInfoFragment(workspace));
         connectTabToFragment(reviews, new ReviewsFragment(workspace));
@@ -58,6 +60,7 @@ public class WorkspaceFragment extends Fragment {
         connectTabToFragment(photos, new PhotosFragment(workspace));
         connectTabToFragment(events, new EventsFragment(workspace));
         connectTabToFragment(rooms, new RoomsFragment(workspace));
+        connectTabToFragment(amenities, new AmenitiesFragment(workspace));
     }
 
     private void connectTabToFragment(View v, final Fragment f) {
